@@ -23,9 +23,9 @@ fun getPropertyParser(files: Set<File>): ConfigFileParser {
     }
 }
 
-fun getFiles(dirPath: String): Set<File> {
-    val directory = dirPath.toDirectory()
-    return directory.listFiles().filter { it.isFile }.toSet()
+
+fun getProfiles(files: Set<File>): Set<Pair<String, File>> {
+    return files.map { Pair(getProfile(it), it) }.toSet()
 }
 
 fun filterProfiles(propertyFiles: Set<File>, ignoreProfiles: Set<String>): Set<File> {
@@ -48,12 +48,6 @@ fun getProfile(file: File): String {
 /***
  * Private helper functions
  */
-private fun String.toDirectory(): File {
-    val directory = File(this)
-    if (!directory.isDirectory)
-        throw IllegalStateException("Path must be a directory")
-    return directory
-}
 
 
 
