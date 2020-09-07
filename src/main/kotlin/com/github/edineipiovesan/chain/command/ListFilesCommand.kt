@@ -9,6 +9,8 @@ class ListFilesCommand : Command<ValidationContext> {
         val map = hashMapOf<String, Set<File>>()
         context.extension.dirsPath.forEach {
             val files = getFiles(it)
+            if (files.isEmpty()) throw IllegalStateException("Directory $it is empty")
+
             map[it] = files
         }
 
@@ -22,17 +24,6 @@ class ListFilesCommand : Command<ValidationContext> {
         return context
     }
 
-//    override fun executeAfter(context: ValidationContext): ValidationContext {
-//        if (!context.extension.showLogs) return context
-//
-//        context.propertiesFiles.forEach { entry ->
-//            println("Directory ${entry.key}")
-//            println(entry.value.joinToString(separator = ", ") { it.name })
-//        }
-//
-//        return context
-//    }
-
     private fun getFiles(directoryPath: String): Set<File> {
         val directory = getDirectory(directoryPath)
         return directory.listFiles().filter { it.isFile }.toSet()
@@ -41,7 +32,7 @@ class ListFilesCommand : Command<ValidationContext> {
     private fun getDirectory(directoryPath: String): File {
         val directory = File(directoryPath)
         if (!directory.isDirectory)
-            throw IllegalStateException("Path must be a directory")
+            throw IllegalArgumentException("Path $directoryPath must be a directory")
         return directory
     }
 }

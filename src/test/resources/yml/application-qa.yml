@@ -1,0 +1,8 @@
+parser: yml
+plugin:
+  author:
+    name: Edinei Piovesan
+    github: https://github.com/edineipiovesan
+  display-name: Spring Profile Config Checker
+  name: spring-profile-config-checker
+  version: 1.0.0-SNAPSHOT

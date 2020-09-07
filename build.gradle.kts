@@ -17,9 +17,13 @@ repositories {
 dependencies {
     gradleApi()
     gradleTestKit()
+
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.11.2")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.11.2")
-    implementation("org.junit.jupiter:junit-jupiter:5.7.0-RC1")
+
+    testImplementation("org.junit.jupiter:junit-jupiter:5.7.0-RC1")
+    testImplementation("io.mockk:mockk:1.10.0")
+    testImplementation("io.kotest:kotest-assertions-core:4.2.3")
 }
 tasks.withType<KotlinCompile>() {
     kotlinOptions.jvmTarget = "1.8"

@@ -3,7 +3,8 @@ package com.github.edineipiovesan.chain.command
 import com.github.edineipiovesan.chain.ValidationContext
 import com.github.edineipiovesan.chain.ValidationProfile
 import com.github.edineipiovesan.chain.base.Command
-import com.github.edineipiovesan.utils.getProfile
+import java.io.File
+
 
 class MapToValidationProfileCommand : Command<ValidationContext> {
     override fun execute(context: ValidationContext): ValidationContext {
@@ -24,5 +25,18 @@ class MapToValidationProfileCommand : Command<ValidationContext> {
         println(context.toString())
 
         return context
+    }
+
+    private fun getProfile(file: File): String {
+        if (!file.isFile)
+            throw IllegalStateException("Path ${file.path} must be a file")
+        val profile = file.name
+            .substringAfterLast("-")
+            .substringBeforeLast(".")
+
+        return when (profile) {
+            "application" -> "default"
+            else -> profile
+        }
     }
 }
