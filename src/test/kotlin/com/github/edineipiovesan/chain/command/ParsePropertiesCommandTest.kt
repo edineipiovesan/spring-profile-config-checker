@@ -1,16 +1,7 @@
 package com.github.edineipiovesan.chain.command
 
-import com.github.edineipiovesan.ProfileCheckerExtension
-import com.github.edineipiovesan.analysisProfilePropertiesSet
-import com.github.edineipiovesan.analysisProfileYamlSet
-import com.github.edineipiovesan.analysisProfileYmlSet
+import com.github.edineipiovesan.*
 import com.github.edineipiovesan.chain.ValidationContext
-import com.github.edineipiovesan.propertiesFilePropertiesSet
-import com.github.edineipiovesan.propertiesFileYamlSet
-import com.github.edineipiovesan.propertiesFileYmlSet
-import com.github.edineipiovesan.propertiesSet
-import com.github.edineipiovesan.propertiesYamlSet
-import com.github.edineipiovesan.propertiesYmlSet
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
@@ -53,8 +44,8 @@ class ParsePropertiesCommandTest {
         val path = "src/test/resources/properties"
         val extension = ProfileCheckerExtension().apply { this.dirsPath = setOf(path) }
         val context = ValidationContext(extension).copy(
-            propertiesFiles = hashMapOf(path to propertiesFilePropertiesSet()),
-            analysisProfile = analysisProfilePropertiesSet()
+            propertiesFiles = hashMapOf(path to propertiesFileSet()),
+            analysisProfile = analysisProfileSet()
         )
 
         val newContext = command.execute(context)

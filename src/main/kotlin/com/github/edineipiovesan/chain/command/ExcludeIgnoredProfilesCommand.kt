@@ -9,8 +9,10 @@ class ExcludeIgnoredProfilesCommand : Command<ValidationContext> {
         val analysisProfileSet = HashSet<ValidationProfile>()
         val ignoredProfiles = context.extension.ignoreProfiles
             .filterNot { it.equals("default", ignoreCase = true) }
-        analysisProfileSet.addAll(context.analysisProfile
-            .filterNot { ignoredProfiles.contains(it.name) })
+        analysisProfileSet.addAll(
+            context.analysisProfile
+                .filterNot { ignoredProfiles.contains(it.name) }
+        )
 
         return context.copy(analysisProfile = analysisProfileSet)
     }

@@ -1,62 +1,34 @@
 package com.github.edineipiovesan
 
+import com.github.edineipiovesan.Profile.DEFAULT
+import com.github.edineipiovesan.Profile.QA
 import com.github.edineipiovesan.chain.ValidationProfile
 import java.io.File
 import java.util.*
 
-fun propertiesYamlSet() =
-    setOf(yamlProperties(), yamlProperties(), yamlProperties()) // FIXME: 07/09/20 profile name inside properties
+enum class Profile { DEFAULT, QA, PRD }
 
-fun propertiesYmlSet() =
-    setOf(ymlProperties(), ymlProperties(), ymlProperties()) // FIXME: 07/09/20 profile name inside properties
+fun propertiesYamlSet() = Profile.values().map { properties("yaml", it) }.toSet()
+fun propertiesYmlSet() = Profile.values().map { properties("yml", it) }.toSet()
+fun propertiesSet() = Profile.values().map { properties("properties", it) }.toSet()
 
-fun propertiesSet() = setOf(properties(), properties(), properties()) // FIXME: 07/09/20 profile name inside properties
+fun propertiesFileYamlSet() = Profile.values().map { file(it, "yaml") }.toSet()
+fun propertiesFileYmlSet() = Profile.values().map { file(it, "yml") }.toSet()
+fun propertiesFileSet() = Profile.values().map { file(it, "properties") }.toSet()
 
-fun propertiesFileYamlSet() = setOf(
-    file("default", "yaml"),
-    file("qa", "yaml"),
-    file("prd", "yaml")
-)
+fun analysisProfileYamlSet() = Profile.values().map { validationProfile(it, "yaml") }.toSet()
+fun analysisProfileYmlSet() = Profile.values().map { validationProfile(it, "yml") }.toSet()
+fun analysisProfileSet() = Profile.values().map { validationProfile(it, "properties") }.toSet()
 
-fun propertiesFileYmlSet() = setOf(
-    file("default", "yml"),
-    file("qa", "yml"),
-    file("prd", "yml")
-)
-
-fun propertiesFilePropertiesSet() = setOf(
-    file("default", "properties"),
-    file("qa", "properties"),
-    file("prd", "properties")
-)
-
-fun analysisProfileYamlSet() = setOf(
-    validationProfile("default", "yaml"),
-    validationProfile("qa", "yaml"),
-    validationProfile("prd", "yaml")
-)
-
-fun analysisProfileYmlSet() = setOf(
-    validationProfile("default", "yml"),
-    validationProfile("qa", "yml"),
-    validationProfile("prd", "yml")
-)
-
-fun analysisProfilePropertiesSet() = setOf(
-    validationProfile("default", "properties"),
-    validationProfile("qa", "properties"),
-    validationProfile("prd", "properties")
-)
-
-private fun file(profile: String, extension: String): File {
-    val filename = if (profile.equals("default", ignoreCase = true)) "application.$extension"
-    else "application-$profile.$extension"
+private fun file(profile: Profile, extension: String): File {
+    val filename = if (profile == DEFAULT) "application.$extension"
+    else "application-${profile.name.toLowerCase()}.$extension"
 
     return File("src/test/resources/$extension/$filename")
 }
 
-private fun validationProfile(profile: String, extension: String) = ValidationProfile(
-    name = profile,
+private fun validationProfile(profile: Profile, extension: String) = ValidationProfile(
+    name = profile.name.toLowerCase(),
     file = file(profile, extension),
     directoryPath = "src/test/resources/$extension"
 )
@@ -73,20 +45,21 @@ private fun commonsProperties(): Properties {
     return properties
 }
 
-private fun ymlProperties(): Properties {
+fun properties(fileType: String = "yaml", profile: Profile = DEFAULT): Properties {
     val properties = commonsProperties()
-    properties["parser"] = "yml"
+    properties["parser"] = fileType
+
+    if (setOf(DEFAULT, QA).contains(profile))
+        properties["plugin.default-value"] = "this-is-${profile.name.toLowerCase()}-value"
+
     return properties
 }
 
-private fun yamlProperties(): Properties {
-    val properties = commonsProperties()
-    properties["parser"] = "yaml"
-    return properties
-}
+fun validateProperties(profile: Profile = DEFAULT, vararg props: String): Properties {
+    val properties = properties(profile = profile)
+    val filteredProperties = Properties()
+    properties.filter { entry -> props.contains(entry.key) }
+        .map { filteredProperties.put(it.key, it.value) }
 
-private fun properties(): Properties {
-    val properties = commonsProperties()
-    properties["parser"] = "properties"
-    return properties
+    return filteredProperties
 }

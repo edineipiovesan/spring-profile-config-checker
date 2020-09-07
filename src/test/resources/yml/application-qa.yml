@@ -6,3 +6,4 @@ plugin:
   display-name: Spring Profile Config Checker
   name: spring-profile-config-checker
   version: 1.0.0-SNAPSHOT
+  default-value: this-is-qa-value

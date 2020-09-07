@@ -6,6 +6,7 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
+import org.gradle.internal.impldep.com.google.common.io.Files
 import org.junit.jupiter.api.Test
 
 class ListFilesCommandTest {
@@ -38,7 +39,7 @@ class ListFilesCommandTest {
 
     @Test
     fun `should throw an exception for empty directory`() {
-        val path = "src/test/resources/empty"
+        val path = Files.createTempDir().path
         val extension = ProfileCheckerExtension().apply { this.dirsPath = setOf(path) }
         val context = ValidationContext(extension)
 

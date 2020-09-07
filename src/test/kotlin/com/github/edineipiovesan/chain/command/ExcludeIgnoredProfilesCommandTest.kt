@@ -1,7 +1,7 @@
 package com.github.edineipiovesan.chain.command
 
 import com.github.edineipiovesan.ProfileCheckerExtension
-import com.github.edineipiovesan.analysisProfilePropertiesSet
+import com.github.edineipiovesan.analysisProfileSet
 import com.github.edineipiovesan.chain.ValidationContext
 import com.github.edineipiovesan.propertiesFileYamlSet
 import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
@@ -20,7 +20,7 @@ class ExcludeIgnoredProfilesCommandTest {
         }
         val context = ValidationContext(extension).copy(
             propertiesFiles = hashMapOf(path to propertiesFileYamlSet()),
-            analysisProfile = analysisProfilePropertiesSet()
+            analysisProfile = analysisProfileSet()
         )
 
         val newContext = command.execute(context)
@@ -35,7 +35,7 @@ class ExcludeIgnoredProfilesCommandTest {
         val extension = ProfileCheckerExtension().apply { this.dirsPath = setOf(path) }
         val context = ValidationContext(extension).copy(
             propertiesFiles = hashMapOf(path to propertiesFileYamlSet()),
-            analysisProfile = analysisProfilePropertiesSet()
+            analysisProfile = analysisProfileSet()
         )
 
         val newContext = command.execute(context)

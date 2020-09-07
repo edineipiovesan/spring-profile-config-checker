@@ -15,5 +15,5 @@ data class ValidationProfile(
     val name: String,
     val file: File,
     val directoryPath: String,
-    val properties: Properties = Properties(),
+    val properties: Properties = Properties()
 )

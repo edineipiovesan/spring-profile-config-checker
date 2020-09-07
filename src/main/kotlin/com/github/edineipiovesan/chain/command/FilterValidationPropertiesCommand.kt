@@ -27,9 +27,12 @@ class FilterValidationPropertiesCommand : Command<ValidationContext> {
     }
 
     private fun Properties.filterProperties(properties: Set<String>): Properties {
+        if (properties.isEmpty()) return this
+
         val filteredProperties = Properties()
         this.filter { entry -> properties.contains(entry.key) }
             .map { filteredProperties.put(it.key, it.value) }
+
         return filteredProperties
     }
 }

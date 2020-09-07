@@ -5,7 +5,6 @@ import com.github.edineipiovesan.chain.ValidationProfile
 import com.github.edineipiovesan.chain.base.Command
 import java.io.File
 
-
 class MapToValidationProfileCommand : Command<ValidationContext> {
     override fun execute(context: ValidationContext): ValidationContext {
         val analysisProfileSet = HashSet<ValidationProfile>()
