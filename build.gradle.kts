@@ -20,6 +20,7 @@ plugins {
     id("java-gradle-plugin")
     id("maven-publish")
 
+    id("org.sonarqube") version "3.0"
     id("com.adarshr.test-logger") version "2.1.0"
     id("org.barfuin.gradle.jacocolog") version "1.2.2"
 }
@@ -83,6 +84,10 @@ tasks.test {
 
 tasks.jacocoTestReport {
     dependsOn(tasks.test)
+}
+
+tasks.sonarqube {
+    dependsOn(tasks.jacocoTestReport)
 }
 
 testlogger {
