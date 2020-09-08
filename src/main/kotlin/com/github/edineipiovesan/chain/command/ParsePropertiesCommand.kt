@@ -7,7 +7,7 @@ import com.github.edineipiovesan.parser.ConfigFileParser
 import com.github.edineipiovesan.parser.PropertiesParser
 import com.github.edineipiovesan.parser.YAMLParser
 import java.io.File
-import java.util.*
+import java.util.HashSet
 
 class ParsePropertiesCommand : Command<ValidationContext> {
     override fun execute(context: ValidationContext): ValidationContext {

@@ -2,15 +2,8 @@ package com.github.edineipiovesan.chain.command
 
 import com.github.edineipiovesan.chain.ValidationContext
 import com.github.edineipiovesan.chain.base.Command
-import java.util.*
-import kotlin.collections.HashMap
-import kotlin.collections.Set
-import kotlin.collections.filter
-import kotlin.collections.forEach
-import kotlin.collections.groupBy
-import kotlin.collections.map
+import java.util.Properties
 import kotlin.collections.set
-import kotlin.collections.toSet
 
 class ValidatePropertiesCommand : Command<ValidationContext> {
     override fun execute(context: ValidationContext): ValidationContext {

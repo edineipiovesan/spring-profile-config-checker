@@ -3,7 +3,8 @@ package com.github.edineipiovesan.chain.command
 import com.github.edineipiovesan.chain.ValidationContext
 import com.github.edineipiovesan.chain.ValidationProfile
 import com.github.edineipiovesan.chain.base.Command
-import java.util.*
+import java.util.HashSet
+import java.util.Properties
 
 class FilterValidationPropertiesCommand : Command<ValidationContext> {
     override fun execute(context: ValidationContext): ValidationContext {

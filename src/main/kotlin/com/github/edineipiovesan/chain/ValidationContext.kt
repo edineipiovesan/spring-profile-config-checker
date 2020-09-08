@@ -3,7 +3,7 @@ package com.github.edineipiovesan.chain
 import com.github.edineipiovesan.ProfileCheckerExtension
 import com.github.edineipiovesan.chain.base.Context
 import java.io.File
-import java.util.*
+import java.util.Properties
 
 data class ValidationContext(
     val extension: ProfileCheckerExtension,

@@ -4,7 +4,7 @@ import com.github.edineipiovesan.Profile.DEFAULT
 import com.github.edineipiovesan.Profile.QA
 import com.github.edineipiovesan.chain.ValidationProfile
 import java.io.File
-import java.util.*
+import java.util.Properties
 
 enum class Profile { DEFAULT, QA, PRD }
 
