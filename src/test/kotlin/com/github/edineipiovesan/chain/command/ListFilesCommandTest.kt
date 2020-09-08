@@ -24,7 +24,7 @@ class ListFilesCommandTest {
         newContext.propertiesFiles.keys shouldContainExactlyInAnyOrder setOf(path)
         newContext.propertiesFiles[path]?.size shouldBe 3
         newContext.propertiesFiles[path]?.map { it.name } shouldContainExactlyInAnyOrder
-                setOf("application-prd.yaml", "application-qa.yaml", "application.yaml")
+            setOf("application-prd.yaml", "application-qa.yaml", "application.yaml")
     }
 
     @Test

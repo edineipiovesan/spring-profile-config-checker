@@ -3,9 +3,7 @@ package com.github.edineipiovesan.parser
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import java.io.File
-import java.util.*
-import kotlin.collections.HashMap
-import kotlin.collections.forEach
+import java.util.Properties
 import kotlin.collections.set
 
 class YAMLParser : ConfigFileParser {

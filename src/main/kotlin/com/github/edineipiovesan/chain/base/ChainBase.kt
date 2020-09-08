@@ -1,6 +1,7 @@
 package com.github.edineipiovesan.chain.base
 
-import java.util.*
+import java.util.LinkedList
+import java.util.Queue
 
 open class ChainBase<CMD : Command<CTX>, CTX : Context> {
     private val commandStack: Queue<CMD> = LinkedList()

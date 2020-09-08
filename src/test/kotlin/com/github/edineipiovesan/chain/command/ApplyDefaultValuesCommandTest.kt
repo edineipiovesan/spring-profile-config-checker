@@ -1,7 +1,9 @@
 package com.github.edineipiovesan.chain.command
 
 import com.github.edineipiovesan.Profile
-import com.github.edineipiovesan.Profile.*
+import com.github.edineipiovesan.Profile.DEFAULT
+import com.github.edineipiovesan.Profile.PRD
+import com.github.edineipiovesan.Profile.QA
 import com.github.edineipiovesan.ProfileCheckerExtension
 import com.github.edineipiovesan.analysisProfileSet
 import com.github.edineipiovesan.chain.ValidationContext

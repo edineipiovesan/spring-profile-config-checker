@@ -28,7 +28,7 @@ class FilterValidationPropertiesCommandTest {
 
         newContext.analysisProfile.flatMap { it.properties.keys }.toSet() shouldHaveSize 2
         newContext.analysisProfile.flatMap { it.properties.keys }.toSet() shouldContainExactlyInAnyOrder
-                setOf("plugin.version", "parser")
+            setOf("plugin.version", "parser")
     }
 
     @Test
@@ -46,6 +46,6 @@ class FilterValidationPropertiesCommandTest {
 
         newContext.analysisProfile.flatMap { it.properties.keys }.toSet() shouldHaveSize properties().size
         newContext.analysisProfile.flatMap { it.properties.keys }.toSet() shouldContainExactlyInAnyOrder
-                properties().keys
+            properties().keys
     }
 }

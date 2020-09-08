@@ -1,7 +1,16 @@
 package com.github.edineipiovesan.chain.command
 
-import com.github.edineipiovesan.*
+import com.github.edineipiovesan.ProfileCheckerExtension
+import com.github.edineipiovesan.analysisProfileSet
+import com.github.edineipiovesan.analysisProfileYamlSet
+import com.github.edineipiovesan.analysisProfileYmlSet
 import com.github.edineipiovesan.chain.ValidationContext
+import com.github.edineipiovesan.propertiesFileSet
+import com.github.edineipiovesan.propertiesFileYamlSet
+import com.github.edineipiovesan.propertiesFileYmlSet
+import com.github.edineipiovesan.propertiesSet
+import com.github.edineipiovesan.propertiesYamlSet
+import com.github.edineipiovesan.propertiesYmlSet
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
